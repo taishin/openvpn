@@ -1,0 +1,25 @@
+#!/bin/sh
+
+if [ $# -ne 1 ]; then
+  echo "usage: ./mkvpncert.sh username"
+  exit 1
+fi
+
+USER=$1
+USERCERTDIR=~/usercert
+
+if [ ! -d $USERCERTDIR ] ; then
+  mkdir $USERCERTDIR
+fi
+
+source /etc/openvpn/easy-rsa/vars
+/etc/openvpn/easy-rsa/pkitool $USER
+cp /etc/openvpn/easy-rsa/keys/$USER.key $USERCERTDIR/client.key
+cp /etc/openvpn/easy-rsa/keys/$USER.crt $USERCERTDIR/client.crt
+cp /etc/openvpn/easy-rsa/keys/ca.crt $USERCERTDIR
+cp /etc/openvpn/easy-rsa/keys/<%= node['openvpn']['sitename'] %>.ovpn $USERCERTDIR
+cd $USERCERTDIR
+/usr/bin/zip $USER.zip client.key client.crt ca.crt <%= node['openvpn']['sitename'] %>.ovpn
+rm client.key client.crt ca.crt <%= node['openvpn']['sitename'] %>.ovpn
+
+

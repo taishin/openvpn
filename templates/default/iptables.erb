@@ -1,0 +1,11 @@
+*filter
+:INPUT ACCEPT
+:FORWARD DROP
+:OUTPUT ACCEPT
+-A FORWARD -s <%= node['openvpn']['network'] %>/<%= node['openvpn']['network_mask'] %> -i tun+ -j ACCEPT 
+-A FORWARD -d <%= node['openvpn']['network'] %>/<%= node['openvpn']['network_mask'] %> -o tun+ -j ACCEPT 
+-A FORWARD -s <%= node['openvpn']['static_net'] %>/<%= node['openvpn']['static_net_mask'] %> -i tun+ -p tcp -m tcp --dport 22 -j ACCEPT
+-A FORWARD -s <%= node['openvpn']['static_net'] %>/<%= node['openvpn']['static_net_mask'] %> -i tun+ -p tcp -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A FORWARD -s <%= node['openvpn']['static_net'] %>/<%= node['openvpn']['static_net_mask'] %> -i tun+ -p icmp -j ACCEPT
+-A FORWARD -d <%= node['openvpn']['static_net'] %>/<%= node['openvpn']['static_net_mask'] %> -o tun+ -j ACCEPT 
+COMMIT

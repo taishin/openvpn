@@ -1,0 +1,73 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 1 (0x1)
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=JP, ST=Osaka, L=Osaka, O=My Company, CN=My Company CA/emailAddress=admin@example.com
+        Validity
+            Not Before: Apr  7 14:20:34 2014 GMT
+            Not After : Apr  4 14:20:34 2024 GMT
+        Subject: C=JP, ST=Osaka, L=Osaka, O=My Company, CN=server/emailAddress=admin@example.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (1024 bit)
+                Modulus:
+                    00:b1:3c:41:b6:d5:81:db:36:aa:0e:ad:c1:e6:fc:
+                    40:8b:dd:e3:8b:97:65:4e:1d:99:a9:b9:fa:81:2f:
+                    d2:26:de:38:69:5c:bd:03:36:cc:dd:ad:07:01:42:
+                    1e:08:56:2f:bf:49:84:81:f5:20:27:ee:44:76:3c:
+                    cf:87:c9:61:a9:63:e7:9c:99:83:a0:8a:cc:bc:27:
+                    95:29:14:31:57:ce:8c:ed:eb:6e:53:c1:06:d3:84:
+                    73:25:04:44:c6:c4:28:5b:21:ca:ab:f2:52:b7:33:
+                    cb:1a:a0:b6:96:2c:e2:38:ac:53:19:f2:3e:b7:24:
+                    6f:54:9c:15:a7:e6:68:98:71
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Cert Type: 
+                SSL Server
+            Netscape Comment: 
+                Easy-RSA Generated Server Certificate
+            X509v3 Subject Key Identifier: 
+                01:51:D0:AA:F9:17:C1:7C:B3:41:C4:14:F3:DF:70:30:44:99:70:13
+            X509v3 Authority Key Identifier: 
+                keyid:78:BD:45:21:97:11:22:EC:60:33:24:9D:4C:D5:E4:36:02:7B:72:FC
+                DirName:/C=JP/ST=Osaka/L=Osaka/O=My Company/CN=My Company CA/emailAddress=admin@example.com
+                serial:D3:FE:46:F2:90:44:1E:EC
+
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Key Usage: 
+                Digital Signature, Key Encipherment
+    Signature Algorithm: sha256WithRSAEncryption
+         b0:06:95:31:1b:9e:a7:05:7c:03:13:8d:cb:33:25:b4:0f:89:
+         cf:a8:86:63:d7:dd:42:49:a8:56:d2:e3:f1:bd:50:8e:7d:2e:
+         1c:d7:9d:75:00:c7:5c:2d:62:c5:dd:2e:96:ef:e8:23:bb:88:
+         03:ca:a5:ae:bc:4e:dd:2a:e6:af:5b:be:71:e5:f3:87:ce:aa:
+         c0:b0:b8:d6:c3:b0:5f:5c:ac:5c:7c:69:8b:3d:21:1b:44:58:
+         a7:6c:09:ad:f8:0d:74:09:c7:13:34:b8:c3:a1:7d:b2:a7:8b:
+         f6:1e:a3:8f:43:f5:4d:07:7d:a7:52:fd:7a:e9:f2:37:e4:ec:
+         5f:3b
+-----BEGIN CERTIFICATE-----
+MIIDtDCCAx2gAwIBAgIBATANBgkqhkiG9w0BAQsFADB8MQswCQYDVQQGEwJKUDEO
+MAwGA1UECBMFT3Nha2ExDjAMBgNVBAcTBU9zYWthMRMwEQYDVQQKEwpNeSBDb21w
+YW55MRYwFAYDVQQDEw1NeSBDb21wYW55IENBMSAwHgYJKoZIhvcNAQkBFhFhZG1p
+bkBleGFtcGxlLmNvbTAeFw0xNDA0MDcxNDIwMzRaFw0yNDA0MDQxNDIwMzRaMHUx
+CzAJBgNVBAYTAkpQMQ4wDAYDVQQIEwVPc2FrYTEOMAwGA1UEBxMFT3Nha2ExEzAR
+BgNVBAoTCk15IENvbXBhbnkxDzANBgNVBAMTBnNlcnZlcjEgMB4GCSqGSIb3DQEJ
+ARYRYWRtaW5AZXhhbXBsZS5jb20wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGB
+ALE8QbbVgds2qg6tweb8QIvd44uXZU4dmam5+oEv0ibeOGlcvQM2zN2tBwFCHghW
+L79JhIH1ICfuRHY8z4fJYalj55yZg6CKzLwnlSkUMVfOjO3rblPBBtOEcyUERMbE
+KFshyqvyUrczyxqgtpYs4jisUxnyPrckb1ScFafmaJhxAgMBAAGjggFLMIIBRzAJ
+BgNVHRMEAjAAMBEGCWCGSAGG+EIBAQQEAwIGQDA0BglghkgBhvhCAQ0EJxYlRWFz
+eS1SU0EgR2VuZXJhdGVkIFNlcnZlciBDZXJ0aWZpY2F0ZTAdBgNVHQ4EFgQUAVHQ
+qvkXwXyzQcQU899wMESZcBMwga8GA1UdIwSBpzCBpIAUeL1FIZcRIuxgMySdTNXk
+NgJ7cvyhgYCkfjB8MQswCQYDVQQGEwJKUDEOMAwGA1UECBMFT3Nha2ExDjAMBgNV
+BAcTBU9zYWthMRMwEQYDVQQKEwpNeSBDb21wYW55MRYwFAYDVQQDEw1NeSBDb21w
+YW55IENBMSAwHgYJKoZIhvcNAQkBFhFhZG1pbkBleGFtcGxlLmNvbYIJANP+RvKQ
+RB7sMBMGA1UdJQQMMAoGCCsGAQUFBwMBMAsGA1UdDwQEAwIFoDANBgkqhkiG9w0B
+AQsFAAOBgQCwBpUxG56nBXwDE43LMyW0D4nPqIZj191CSahW0uPxvVCOfS4c1511
+AMdcLWLF3S6W7+gju4gDyqWuvE7dKuavW75x5fOHzqrAsLjWw7BfXKxcfGmLPSEb
+RFinbAmt+A10CccTNLjDoX2yp4v2HqOPQ/VNB32nUv166fI35OxfOw==
+-----END CERTIFICATE-----

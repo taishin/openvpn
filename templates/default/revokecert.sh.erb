@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ $# -ne 1 ]; then
+  echo "usage: $0 username"
+  exit 1
+fi
+
+USER=$1
+cd /etc/openvpn/easy-rsa
+source /etc/openvpn/easy-rsa/vars
+/etc/openvpn/easy-rsa/revoke-full $USER
+mv keys/$USER.key keys/old/
+mv keys/$USER.csr keys/old/
+mv keys/$USER.crt keys/old/
