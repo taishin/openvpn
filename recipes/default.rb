@@ -108,10 +108,10 @@ template "/usr/local/bin/revokecert.sh" do
 end
 
        
-# service "openvpn" do
-#   supports :status => true, :restart => true, :reload => true
-#   action [ :enable, :start ]
-# end
+service "openvpn" do
+  supports :status => true, :restart => true, :reload => true
+  action [ :enable, :start ]
+end
 
 service "iptables" do
   supports :status => true, :restart => true, :reload => true
