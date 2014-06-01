@@ -8,19 +8,22 @@
 #
 
 
-remote_file "#{Chef::Config[:file_cache_path]}/epel-release.noarch.rpm" do
- 	source "http://dl.fedoraproject.org/pub/epel/#{node[:platform_version].to_i}/#{node[:kernel][:machine]}/epel-release-#{node[:platform_version].to_i}-8.noarch.rpm"
-end
+case node[:platform]
+when "redhat", "centos", "fedora"
+  remote_file "#{Chef::Config[:file_cache_path]}/epel-release.noarch.rpm" do
+ 	  source "http://dl.fedoraproject.org/pub/epel/#{node[:platform_version].to_i}/#{node[:kernel][:machine]}/epel-release-#{node[:platform_version].to_i}-8.noarch.rpm"
+  end
 
-rpm_package "epel-release" do
- 	action :install
- 	source "#{Chef::Config[:file_cache_path]}/epel-release.noarch.rpm"
+  rpm_package "epel-release" do
+ 	  action :install
+ 	  source "#{Chef::Config[:file_cache_path]}/epel-release.noarch.rpm"
+  end
 end
-
 
 node['openvpn']['packages'].each do |pkg|
   package pkg do
     action :install
+    options "--enablerepo=epel"
   end
 end
 

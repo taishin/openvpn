@@ -11,9 +11,9 @@ default['openvpn']['route'] = %w{
   172.18.4.0\ 255.255.255.0
 }
 
-default['openvpn']['network'] = "172.31.1.0"
+default['openvpn']['network'] = "172.24.1.0"
 default['openvpn']['network_mask'] = "255.255.255.0"
-default['openvpn']['static_net'] = "172.31.2.0"
+default['openvpn']['static_net'] = "172.24.2.0"
 default['openvpn']['static_net_mask'] = "255.255.255.0"
 default['openvpn']['server'] = "10.3.111.134"
 default['openvpn']['port'] = "443"
