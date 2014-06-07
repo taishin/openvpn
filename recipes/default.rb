@@ -27,32 +27,7 @@ node['openvpn']['packages'].each do |pkg|
   end
 end
 
-template "/etc/openvpn/server.conf" do
-  source "server.conf.erb"
-  owner "root"
-  mode 0644
-  # notifies :restart, "service[openvpn]"
-end
 
-template "/etc/sysctl.conf" do
-  source "sysctl.conf.erb"
-  owner "root"
-  mode 0644
-  notifies :run, "execute[sysctl]"
-end
-
-execute "sysctl" do
-	command "/sbin/sysctl -p"
-	action :nothing
-end
-
-template "/etc/sysconfig/iptables" do
-	source "iptables.erb"
-	owner "root"
-	group "root"
-	mode 00600
-	notifies :restart, "service[iptables]"
-end
 
 
 execute "easy-rsa" do
@@ -67,26 +42,96 @@ template "/etc/openvpn/easy-rsa/vars" do
 	mode 00644
 end
 
-execute "ccd" do
+bash "careate CA" do
+  user "root"
+  cwd "/etc/openvpn/easy-rsa"
+  code <<-EOC
+    source vars
+    ./clean-all
+    ./pkitool --initca
+  EOC
+  not_if { ::File.exists?("/etc/openvpn/easy-rsa/keys/ca.crt") }
+end
+
+bash "careate Server Key" do
+  user "root"
+  cwd "/etc/openvpn/easy-rsa"
+  code <<-EOC
+    source vars
+    ./pkitool --server server
+  EOC
+  not_if { ::File.exists?("/etc/openvpn/easy-rsa/keys/server.crt") }
+end
+
+bash "careate DH" do
+  user "root"
+  cwd "/etc/openvpn/easy-rsa"
+  code <<-EOC
+    source vars
+    ./build-dh
+  EOC
+  not_if { ::File.exists?("/etc/openvpn/easy-rsa/keys/dh#{node['openvpn']['key']['size']}.pem") }
+end
+
+bash "careate CRL" do
+  user "root"
+  cwd "/etc/openvpn/easy-rsa"
+  code <<-EOC
+    source vars
+    ./pkitool dust
+    ./revoke-full dust
+  EOC
+  not_if { ::File.exists?("/etc/openvpn/easy-rsa/keys/crl.pem") }
+  ignore_failure { true }
+end
+
+execute "create ccd" do
 	command "mkdir /etc/openvpn/ccd"
   not_if { ::File.exists?("/etc/openvpn/ccd") }
 end
 
 
-remote_directory "/etc/openvpn/easy-rsa/keys" do
-	source "keys"
-	files_owner "root"
-	files_group "root"
-	files_mode 00644
-	owner "root"
-	group "root"
-	mode 00755
-	not_if { ::File.exists?("/etc/openvpn/easy-rsa/keys") }
-end
+# remote_directory "/etc/openvpn/easy-rsa/keys" do
+# 	source "keys"
+# 	files_owner "root"
+# 	files_group "root"
+# 	files_mode 00644
+# 	owner "root"
+# 	group "root"
+# 	mode 00755
+# 	not_if { ::File.exists?("/etc/openvpn/easy-rsa/keys") }
+# end
 
-execute "old key dir" do
+execute "create old key dir" do
 	command "mkdir /etc/openvpn/easy-rsa/keys/old"
   not_if { ::File.exists?("/etc/openvpn/easy-rsa/keys/old") }
+end
+
+template "/etc/openvpn/server.conf" do
+  source "server.conf.erb"
+  owner "root"
+  mode 0644
+  notifies :restart, "service[openvpn]"
+end
+
+template "/etc/sysctl.conf" do
+  source "sysctl.conf.erb"
+  owner "root"
+  mode 0644
+  notifies :run, "execute[sysctl]"
+end
+
+execute "sysctl" do
+  command "/sbin/sysctl -e -p"
+  action :nothing
+end
+
+template "/etc/sysconfig/iptables" do
+  source "iptables.erb"
+  owner "root"
+  group "root"
+  mode 00600
+  notifies :restart, "service[iptables]"
 end
 
 template "/etc/openvpn/easy-rsa/keys/#{node['openvpn']['sitename']}.ovpn" do
