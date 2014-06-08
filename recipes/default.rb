@@ -82,7 +82,7 @@ bash "careate CRL" do
     ./revoke-full dust
   EOC
   not_if { ::File.exists?("/etc/openvpn/easy-rsa/keys/crl.pem") }
-  ignore_failure { true }
+  ignore_failure true
 end
 
 execute "create ccd" do
