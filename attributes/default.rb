@@ -8,16 +8,16 @@ default['openvpn']['route'] = %w{
   172.31.0.0\ 255.255.0.0
 }
 
-default['openvpn']['network'] = "172.24.1.0"
+default['openvpn']['network'] = "172.27.254.0"
 default['openvpn']['network_mask'] = "255.255.255.0"
 default['openvpn']['static_net'] = "172.24.2.0"
 default['openvpn']['static_net_mask'] = "255.255.255.0"
 default['openvpn']['server'] = "54.178.143.26"
 default['openvpn']['port'] = "443"
 default['openvpn']['proto'] = "tcp"
-default['openvpn']['proxy'] = "192.168.49.252 80"
+default['openvpn']['proxy'] = "xx.xx.xx.xx 80"
 default['openvpn']['dnsserver'] = %w{
-	172.31.0.2
+	172.27.0.2
 }
 default['openvpn']['sitename'] = "oursite"
 
