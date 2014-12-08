@@ -136,7 +136,7 @@ ifconfig-pool-persist ipp.txt
 ;push "route 192.168.20.0 255.255.255.0"
 <% if node['openvpn']['route'] then %>
 <% node['openvpn']['route'].each do |route| -%>
-push "route <%= route %>"
+;push "route <%= route %>"
 <% end -%>
 <% end %>
 
@@ -204,7 +204,7 @@ route <%= node['openvpn']['static_net'] %> <%= node['openvpn']['static_net_mask'
 ;push "dhcp-option DNS 208.67.220.220"
 <% if node['openvpn']['dnsserver'] then %>
 <% node['openvpn']['dnsserver'].each do |dns| -%>
-push "dhcp-option DNS <%= dns %>"
+;push "dhcp-option DNS <%= dns %>"
 <% end -%>
 <% end %>
 
